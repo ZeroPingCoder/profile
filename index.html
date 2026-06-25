@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>张明 · 个人学术主页</title>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== 全局重置 & 字体 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+            padding: 2.5rem 2.8rem;
+            transition: all 0.2s;
+        }
+
+        /* ===== 导航栏 ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid #e9edf2;
+            margin-bottom: 2.2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0b2b4a;
+        }
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        /* ===== 头部：头像 + 简介 ===== */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.8rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .avatar {
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 600;
+            color: #ffffff;
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.25);
+            user-select: none;
+        }
+
+        .intro h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0b2b4a;
+            margin-bottom: 0.25rem;
+        }
+        .intro .title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #475569;
+            margin-bottom: 0.6rem;
+        }
+        .intro .affiliation {
+            display: inline-block;
+            background: #eef2f7;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #1e293b;
+            margin-bottom: 0.8rem;
+        }
+        .intro p {
+            max-width: 580px;
+            color: #334155;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f1f4f9;
+            color: #1e293b;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            background: #2563eb;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.25);
+        }
+
+        /* ===== 通用章节 ===== */
+        section {
+            margin-bottom: 3.4rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b2b4a;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.6rem;
+            border-left: 5px solid #2563eb;
+            padding-left: 1rem;
+        }
+        .section-title i {
+            color: #2563eb;
+            font-size: 1.4rem;
+        }
+
+        /* ===== 研究兴趣 ===== */
+        .interests-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .interests-grid .tag {
+            background: #eef2ff;
+            color: #1e3a8a;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid #dbe3fe;
+            transition: 0.15s;
+        }
+        .interests-grid .tag:hover {
+            background: #dbe3fe;
+            transform: scale(1.02);
+        }
+
+        /* ===== 论文列表 ===== */
+        .pub-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #edf2f7;
+            transition: background 0.15s;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+        }
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-year {
+            font-weight: 600;
+            color: #2563eb;
+            min-width: 60px;
+            font-size: 0.95rem;
+        }
+
+        .pub-content {
+            flex: 1;
+            min-width: 200px;
+        }
+        .pub-content .title {
+            font-weight: 600;
+            color: #0b2b4a;
+            font-size: 1.05rem;
+        }
+        .pub-content .authors {
+            color: #475569;
+            font-size: 0.95rem;
+            margin: 0.1rem 0 0.2rem;
+        }
+        .pub-content .authors .me {
+            font-weight: 600;
+            color: #0b2b4a;
+        }
+        .pub-content .venue {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-style: italic;
+        }
+        .pub-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .pub-links a {
+            font-size: 0.85rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.15s;
+            border-bottom: 1px dotted transparent;
+        }
+        .pub-links a:hover {
+            border-bottom-color: #2563eb;
+            color: #1d4ed8;
+        }
+
+        /* ===== 教学经历 ===== */
+        .teaching-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .teaching-item:last-child {
+            border-bottom: none;
+        }
+        .teaching-term {
+            font-weight: 600;
+            color: #2563eb;
+            min-width: 100px;
+            font-size: 0.95rem;
+        }
+        .teaching-desc {
+            flex: 1;
+        }
+        .teaching-desc .course {
+            font-weight: 600;
+            color: #0b2b4a;
+        }
+        .teaching-desc .role {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+        .teaching-desc .detail {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* ===== 联系方式 ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            background: #f8fafc;
+            padding: 1.8rem 2rem;
+            border-radius: 20px;
+            border: 1px solid #e9edf2;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.98rem;
+            color: #1e293b;
+        }
+        .contact-item i {
+            width: 28px;
+            color: #2563eb;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .contact-item a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px dotted transparent;
+            transition: 0.15s;
+        }
+        .contact-item a:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        /* ===== 页脚 ===== */
+        footer {
+            margin-top: 2.8rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid #e9edf2;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.8rem 1.2rem;
+            }
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .hero {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .intro p {
+                max-width: 100%;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .pub-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+            .pub-year {
+                min-width: auto;
+            }
+            .teaching-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+            .teaching-term {
+                min-width: auto;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 3.2rem;
+            }
+            .intro h1 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 1.2rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ==================== 导航栏 ==================== -->
+        <nav>
+            <div class="logo">张<span>明</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">关于</a></li>
+                <li><a href="#research">研究</a></li>
+                <li><a href="#publications">论文</a></li>
+                <li><a href="#teaching">教学</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </nav>
+
+        <!-- ==================== 个人简介 ==================== -->
+        <header class="hero" id="about">
+            <div class="avatar">张</div>
+            <div class="intro">
+                <h1>招牌菜</h1>
+                <div class="title">经济学 · 硕士生</div>
+                <div class="affiliation">
+                    <i class="fas fa-university" style="margin-right: 6px;"></i>南京大学 · 商学院
+                </div>
+                <p>
+                    研究方向为机器学习与计算机视觉，聚焦于自监督学习和多模态表征。
+                    博士期间在 TPAMI、CVPR、ICCV 等期刊和会议发表论文十余篇。
+                </p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== 研究兴趣 ==================== -->
+        <section id="research">
+            <div class="section-title">
+                <i class="fas fa-flask"></i> 研究兴趣
+            </div>
+            <div class="interests-grid">
+                <span class="tag">人工智能</span>
+                <span class="tag">大数据</span>
+                <span class="tag">金融</span>
+                <span class="tag">对比学习</span>
+                <span class="tag">大模型微调</span>
+                <span class="tag">医疗影像分析</span>
+            </div>
+        </section>
+
+        <!-- ==================== 论文发表 ==================== -->
+        <section id="publications">
+            <div class="section-title">
+                <i class="fas fa-file-alt"></i> 代表性论文
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-year">2026</div>
+                <div class="pub-content">
+                    <div class="title">Self-Supervised Vision Transformer with Dynamic Masking</div>
+                    <div class="authors"><span class="me">张明</span>, 李华, 王伟, 陈思</div>
+                    <div class="venue">IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 2026</div>
+                    <div class="pub-links">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-code"></i> Code</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-year">2025</div>
+                <div class="pub-content">
+                    <div class="title">Cross-Modal Alignment via Contrastive Learning for Medical Imaging</div>
+                    <div class="authors"><span class="me">张明</span>, 刘洋, 赵岩</div>
+                    <div class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025</div>
+                    <div class="pub-links">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-code"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-year">2024</div>
+                <div class="pub-content">
+                    <div class="title">Efficient Fine-Tuning of Large-Scale Vision Models with Adapter Modules</div>
+                    <div class="authors">王伟, <span class="me">张明</span>, 李华</div>
+                    <div class="venue">International Conference on Computer Vision (ICCV), 2024</div>
+                    <div class="pub-links">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-year">2023</div>
+                <div class="pub-content">
+                    <div class="title">Unsupervised Representation Learning for Point Clouds</div>
+                    <div class="authors"><span class="me">张明</span>, 陈思, 赵岩</div>
+                    <div class="venue">Advances in Neural Information Processing Systems (NeurIPS), 2023</div>
+                    <div class="pub-links">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fas fa-code"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 教学经历 ==================== -->
+        <section id="teaching">
+            <div class="section-title">
+                <i class="fas fa-chalkboard-teacher"></i> 教学经历
+            </div>
+
+            <div class="teaching-item">
+                <div class="teaching-term">2026 春</div>
+                <div class="teaching-desc">
+                    <span class="course">机器学习</span>
+                    <span class="role">· 助教</span>
+                    <div class="detail">南京大学 · 计算机学院，本科生课程，负责实验课与作业批改</div>
+                </div>
+            </div>
+
+            <div class="teaching-item">
+                <div class="teaching-term">2025 秋</div>
+                <div class="teaching-desc">
+                    <span class="course">计算机视觉</span>
+                    <span class="role">· 助教</span>
+                    <div class="detail">南京大学 · 计算机学院，研究生课程，协助项目指导与论文研讨</div>
+                </div>
+            </div>
+
+            <div class="teaching-item">
+                <div class="teaching-term">2024 秋</div>
+                <div class="teaching-desc">
+                    <span class="course">数据结构与算法</span>
+                    <span class="role">· 助教</span>
+                    <div class="detail">南京大学 · 计算机学院，本科生核心课程，辅导习题课与实验</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 联系方式 ==================== -->
+        <section id="contact">
+            <div class="section-title">
+                <i class="fas fa-address-card"></i> 联系方式
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:zhangming@nju.edu.cn">zhangming@nju.edu.cn</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+86 025 8968 1234</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>南京大学仙林校区 · 计算机楼 306</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-google"></i>
+                    <a href="#">Google Scholar</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="#">github.com/zhangming</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-twitter"></i>
+                    <a href="#">@zhangming_cs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 页脚 ==================== -->
+        <footer>
+            &copy; 2026 张明 &mdash; 最后更新于 2026 年 6 月
+        </footer>
+
+    </div>
+</body>
+</html>
